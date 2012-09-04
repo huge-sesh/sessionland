@@ -1,0 +1,59 @@
+{% extends "sessionland.html" %}
+{% block controls %}
+{% endblock %}
+{% block body %}
+    <div class="hidden" id="hidden">
+        <div id="example-say" class="say">
+            <div class="speech-bubble">content</div>
+            <div class="avatar-container">
+                <a class="avatar-link" href="/userid"><img class="avatar-img"/></a>
+            </div>
+        </div>
+        <div id="data">{{ data }}</div>
+        {% if user %}
+            <div class="say say-input" id="input">
+                <div class="speech-bubble">
+                    <form action="/post" method="post">
+                        <textarea class="user-input input-box" name="content"></textarea>
+                        <div class="user-input-hidden input-box"></div>
+                        {% if thread %}<input type="hidden" name="thread" value="{{ thread }}"/>{% endif %}
+                        {% if forum  %}<input type="hidden" name="forum" value="{{ forum }}"/>{% endif %}
+                        <input type="hidden" name="last" value="{{ last }}"/>
+                        <div class="avatar-buttons">
+                        </div>
+                    </form>
+                </div>
+                <div class="avatar-container">
+                    <a href="/{{ user['id'] }}"><img class="avatar-img" src="{{ user['avatar'][0]['url'] }}"/></a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div id="posts-container">
+        <div class="controls group indent">
+            {% if not threads %}<a href="/{{forum}}">land</a>{% endif %}
+
+            {% if user %}
+            <span class="right">
+                <a href="/avatar/">avatar</a>
+                <a href="/page/">page</a>
+                <a href="/account/logout/">leave</a>
+            </span>
+            {% else %}
+                <form action="/account/" method="post" enctype="multipart/form-data">
+                    <span><span>name </span><input type="text" name="username"/></span>
+                    <span><span>pass </span><input type="password" name="password"/></span>
+                    <span><input type="submit" name="action" value="login"></span>
+                    <span>or upload avatar to join</span>
+                    <span><input type="file" name="file" accept="image/*"/></span>
+                    <span><input type="submit" name="action" value="register"/></span>
+                    <input type="hidden" name="last" value="{{ last }}"/>
+                </form>
+            {% endif %}
+
+        </div>
+        <div class="scratchbox"></div>
+        <div id="posts"></div>
+
+    </div>
+{% endblock %}

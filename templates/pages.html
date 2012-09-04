@@ -1,0 +1,71 @@
+{% extends "sessionland.html" %}
+{% block body %}
+    
+    <div class="active group indent">
+    {% if active %}
+        <h1>active</h1>
+        {% for file in active['pages'] %}
+        <img src='{{ file ['url'] }}'>
+        {% endfor %}
+        <div class="file-add">
+            <form action="/page/add" method="post" enctype="multipart/form-data">
+                <span><input type="file" name="file" accept="image/*"/></span>
+                <span><button name="page" value="{{ active['id'] }}" type="submit"/>add an image</span>
+            </form>
+        </div>
+    {% else %}
+        <h1>you have no active page! create and publish a page to enable your zone.</h1>
+    {% endif %}
+    </div>
+
+
+    <div class="unpublished group indent">
+        <h1>unpublished</h1>
+        <div class="file-new group indent">
+            <form action="/page/new" method="post" enctype="multipart/form-data">
+                <span><input type="file" name="file" accept="image/*"/></span>
+                <span><button type="submit">upload an image to create a new page</button></span>
+            </form>
+        </div>
+        {% for page in unpublished %}
+            <div class="file-set group indent">
+                {% for file in page['files'] %}
+                    <img src='{{ file['url'] }}'>
+                {% endfor %}
+                <div class="file-publish">
+                    <form action="/page/publish" method="post">
+                        <button name="page" type="submit" value="{{ page['id'] }}">publish</button>
+                    </form>
+                </div>
+                <div class="file-add">
+                    <form action="/page/add" method="post" enctype="multipart/form-data">
+                        <span><input type="file" name="file" accept="image/*"/></span>
+                        <span><button name="page" value="{{ page['id'] }}" type="submit"/>add an image</button></span>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="inactive group indent">
+    <h1>published</h1>
+    {% for page in published %}
+        <div class="file-set group indent">
+            {% for file in page['files'] %}
+                <img src='{{ file['url'] }}'>
+            {% endfor %}
+            <div class="file-select">
+                <form action="/page/select" method="post">
+                    <button name="page" type="submit" value="{{ page['id'] }}">select</button>
+                </form>
+            </div>
+            <div class="file-add">
+                <form action="/page/add" method="post" enctype="multipart/form-data">
+                    <span><input type="file" name="file" accept="image/*"/></span>
+                    <span><button name="page" value="{{ page['id'] }}" type="submit">add an image</button></span>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

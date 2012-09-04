@@ -1,0 +1,62 @@
+{% extends "sessionland.html" %}
+{% block body %}
+    
+    <div class="group indent active file-set">
+        <h1>your active avatar</h1>
+        {% for file in active['avatars'] %}
+        <div class="say">
+            <div class="speech-bubble">i'm {{ file['name'] }}</div>
+            <div class="avatar-container">
+                <img src='{{ file['url'] }}'>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="file-add">
+            <form action="/avatar/add" method="post" enctype="multipart/form-data">
+                <span><input type="file" name="file" accept="image/*"/></span>
+                <span>name:<input type="text" name="name"/></span>
+                <span><button name="avatar" value="{{ active['id'] }}" type="submit"/>add an image</button></span>
+            </form>
+        </div>
+    </div>
+
+    <div class="group indent file-new">
+        <h1>upload an image to start a new avatar</h1>
+        <form action="/avatar/new" method="post" enctype="multipart/form-data">
+            <span><input type="file" name="file" accept="image/*"/></span>
+            <span>name:<input type="text" name="name"></input></span>
+            <span><button type="submit"/>create an avatar</button></span>
+        </form>
+    </div>
+
+    <div class="group indent inactive">
+        <h1>inactive avatars</h1>
+        {% for avatar in inactive %}
+            <div class="group indent file-set">
+                {% for file in avatar['avatars'] %}
+                <div class="say">
+                    <div class="speech-bubble">i'm {{ file['name'] }}</div>
+                    <div class="avatar-container">
+                        <img src='{{ file['url'] }}'>
+                    </div>
+                </div>
+                {% endfor %}
+
+            <div class="file-select">
+                <form action="/avatar/select" method="post">
+                    <span><button name="avatar" type="submit" value="{{ avatar['id'] }}">select</button></span>
+                </form>
+            </div>
+
+            <div class="file-add">
+                <form action="/avatar/add" method="post" enctype="multipart/form-data">
+                    <span><input type="file" name="file" accept="image/*"/></span>
+                    <span>name:<input type="text" name="name"/></span>
+                    <span><button name="avatar" value="{{ avatar['id'] }}" type="submit"/>add an image</button></span>
+                </form>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

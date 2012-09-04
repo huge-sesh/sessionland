@@ -1,0 +1,12 @@
+Jinja2==2.6
+PIL==1.1.7
+Twisted==12.0.0
+cyclone==1.0-rc3
+dropbox==1.4
+oauth==1.0.1
+psycopg2==2.4.5
+psycopg2ct==2.4.4
+simplejson==2.5.0
+txpostgres==1.0.0
+wsgiref==0.1.2
+zope.interface==3.8.0

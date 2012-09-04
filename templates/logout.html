@@ -1,0 +1,11 @@
+{% extends "sessionland.html" %}
+
+{% block body %}
+        <div class="say post">
+            <div class="speech-bubble"> see you later, space cowboy... </div>
+            <div class="avatar">
+                <a href="/{{ user['id'] }}"><img src="{{ user['avatar'] }}"/></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

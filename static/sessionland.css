@@ -1,0 +1,117 @@
+body { 
+	background-image:url('leopardskin.gif');
+    font-family:sans-serif;
+}
+.speech-bubble {
+	position:relative; 
+    min-width: 116px;
+    min-height: 1em;
+	padding:15px 15px; 
+	margin:1em 0 0.5em 0;
+	border:2px solid black; 
+	text-align:center; 
+	color:#333;
+	background:#fff;
+    font-family:sans-serif;
+    font-size:15px;
+	/* css3 */
+	border-radius:20px;
+}
+.speech-bubble:after {
+	content:"";
+	position:absolute; 
+	z-index:10; 
+	bottom:-30px; 
+	left:20px; 
+	width:43px; 
+	height:30px;
+	background-image:url('tail.png');
+    background-repeat:no-repeat;
+}
+
+.page {
+    border-width: 10px 10px;
+    border-style: solid;
+    border-color: black;
+    background-color: black;
+    width:100%;
+    overflow:auto;
+    background-position: center bottom;
+    background-size: 100%;
+    background-repeat:no-repeat;
+    position:relative;
+    text-align:center;
+    padding: 10px 0px 15px 0px;
+}
+.say {
+    min-width: 150px;
+    display:inline-block;
+    max-width:325px;
+    position: relative; bottom:0px;
+}
+
+.say-input {
+    min-width: 325px;
+}
+
+.input-box {
+    width: 291px;
+}
+
+.user-input {
+    border: none;
+    font-family:sans-serif;
+    font-size:15px;
+    text-align:center;
+    overflow:hidden;
+    outline:none;
+    width:100%
+    resize:none;
+    min-height:1em;
+    min-width: 5em;
+
+    -moz-transition: all 0.25s; 
+    -webkit-transition: all 0.25s;  
+    -ms-transition: all 0.25s;  
+    -o-transition: all 0.25s;
+    transition: all 0.25s;
+}
+
+.user-input-hidden {
+    display: none;
+    font-family:sans-serif;
+    font-size:15px;
+    overflow: hidden;
+    word-wrap: break-word;
+    padding: 1em;
+}
+
+.speak-button {
+    display:block;
+    margin-right:0px;
+}
+
+form {
+    margin: 0em !important;
+    width: auto !important;
+}
+.message { 
+    width: auto;
+    float:right;
+}
+.hidden { display:none; }
+.file-set { background-color:#8efff0; }
+.active { background-color:#8aff62; }
+.inactive { background-color:#eebdff; }
+.indent { padding-left: 10px; padding-right: 10px; }
+.group { padding-top: 10px; padding-bottom: 10px; }
+.unpublished { background-color:#674cff;}
+.file-new { background-color:#ff878f; }
+.file-add { background-color:#ffa7a7; }
+.file-select { background-color:#ff878f; }
+.file-publish { background-color:#fd001e; }
+.controls { background-color:#ff155a; min-height: 1em; width:1024px; font-family:'Lucida Console', Monaco, monospace; color: black; }
+.float-footer { clear:both; }
+.right { display:block; float:right; }
+
+div#posts-container { width:1024px; background:black; margin: auto;}
